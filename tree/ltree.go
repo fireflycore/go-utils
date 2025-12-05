@@ -5,6 +5,10 @@ import "strings"
 // LTree 树结构工具类
 type LTree struct{}
 
+func NewLTree() *LTree {
+	return &LTree{}
+}
+
 // GetLTreeDepth 计算LTree路径的深度
 func (t *LTree) GetLTreeDepth(path string) int {
 	if path == "" {
