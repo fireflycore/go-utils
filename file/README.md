@@ -8,7 +8,7 @@
 
 - **签名**: `func ReadRemoteFile(url string) ([]byte, error)`
 - **描述**: 读取远程 URL 的文件内容。
-- **警告**: 全量加载到内存，不适合大文件。
+- **注意**: 全量加载到内存，不适合大文件。
 
 #### WriteLocalFile
 

@@ -1,4 +1,4 @@
-## Slices (切片)
+## Slicex (切片扩展)
 
 提供泛型切片操作工具。
 
@@ -19,19 +19,19 @@
 ```go
 import (
     "fmt"
-    "github.com/fireflycore/go-utils/slices"
+    "github.com/fireflycore/go-utils/slicex"
 )
 
 func main() {
     // DiffSlice 示例
     oldSlice := []int{1, 2, 3}
     newSlice := []int{2, 3, 4}
-    add, remove := slices.DiffSlice(oldSlice, newSlice)
+    add, remove := slicex.DiffSlice(oldSlice, newSlice)
     fmt.Printf("Add: %v, Remove: %v\n", add, remove) // Add: [4], Remove: [1]
 
     // FilterSlice 示例
     nums := []int{1, 2, 3, 4, 5}
-    evens := slices.FilterSlice(nums, func(i int, v int) bool {
+    evens := slicex.FilterSlice(nums, func(i int, v int) bool {
         return v%2 == 0
     })
     fmt.Println("Evens:", evens) // Evens: [2 4]

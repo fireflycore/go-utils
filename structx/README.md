@@ -1,4 +1,4 @@
-## Structure (结构体)
+## Structx (结构体扩展)
 
 提供结构体转换与比较工具。
 
@@ -20,7 +20,7 @@
 ```go
 import (
     "fmt"
-    "github.com/fireflycore/go-utils/structure"
+    "github.com/fireflycore/go-utils/structx"
 )
 
 type User struct {
@@ -32,12 +32,12 @@ func main() {
     // StructConvert
     u1 := User{Name: "Alice", Age: 30}
     var u2 User
-    structure.StructConvert(&u1, &u2)
+    structx.StructConvert(&u1, &u2)
     
     // DiffStruct
     oldUser := User{Name: "Bob", Age: 20}
     newUser := User{Name: "Bob", Age: 21}
-    diff := structure.DiffStruct(oldUser, newUser, nil)
+    diff := structx.DiffStruct(oldUser, newUser, nil)
     fmt.Println(diff) // map[Age:21]
 }
 ```

@@ -1,4 +1,4 @@
-package array
+package slicex
 
 // DiffSlice 比较两个切片的差异
 // old: 旧切片数据
