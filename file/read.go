@@ -5,7 +5,8 @@ import (
 	"net/http"
 )
 
-func ReadRemote(url string) ([]byte, error) {
+// ReadRemoteFile 读取远程文件内容
+func ReadRemoteFile(url string) ([]byte, error) {
 	res, err := http.Get(url)
 	if err != nil {
 		return nil, err
