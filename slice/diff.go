@@ -1,10 +1,13 @@
 package array
 
 // DiffSlice 比较两个切片的差异
-// old, new: 旧切片和新切片
+// old: 旧切片数据
+// new: 新切片数据
 // 返回:
-//   - add: 新增的元素
-//   - remove: 删除的元素
+//   - add: 在 new 中存在但 old 中不存在的元素（新增）
+//   - remove: 在 old 中存在但 new 中不存在的元素（删除）
+//
+// 注意：T 必须是 comparable 类型
 func DiffSlice[T comparable](old, new []T) (add, remove []T) {
 	// 使用双map实现O(1)存在性检查 + 自动去重
 	oldSet := make(map[T]struct{}, len(old))

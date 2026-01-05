@@ -21,17 +21,17 @@
   - 签名: `func FilterSlice[T any](array []T, fn func(index int, item T) bool) []T`
   - 描述: 根据过滤函数 `fn` 筛选切片中的元素，返回保留下来的元素组成的新切片。
 
-### 3. File (文件)
+### 5. File (文件)
 提供文件读写辅助功能。
 
-- **ReadRemote**
-  - 签名: `func ReadRemote(url string) ([]byte, error)`
+- **ReadRemoteFile**
+  - 签名: `func ReadRemoteFile(url string) ([]byte, error)`
   - 描述: 读取远程 URL 的文件内容。
-- **WriteLocal**
-  - 签名: `func WriteLocal(path string, bytes []byte) error`
+- **WriteLocalFile**
+  - 签名: `func WriteLocalFile(path string, bytes []byte) error`
   - 描述: 将字节内容写入本地文件，如果目录不存在会自动创建。
 
-### 4. Struct (结构体)
+### 6. Struct (结构体)
 提供结构体转换与比较工具。
 
 - **StructConvert**
