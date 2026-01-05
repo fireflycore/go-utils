@@ -24,7 +24,7 @@ type Compress interface {
 ### 示例
 
 ```go
-import "d/project/firefly/go-utils/compress"
+import "github.com/fireflycore/go-utils/compress"
 
 func main() {
     c := compress.NewGZIP()
