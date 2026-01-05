@@ -27,6 +27,9 @@ func (ist *RSA) Encrypt(data []byte, key []byte) ([]byte, error) {
 }
 
 // Decrypt 使用 RSA 私钥解密数据
+// data: 密文数据
+// key: PEM 格式的 RSA 私钥数据
+// 使用 SHA256 作为 OAEP 的哈希函数
 func (ist *RSA) Decrypt(data []byte, key []byte) ([]byte, error) {
 	// 解析 RSA 私钥
 	privateKey, err := ist.parseRSAPrivateKey(key)
