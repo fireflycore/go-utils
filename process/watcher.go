@@ -7,6 +7,8 @@ import (
 	"syscall"
 )
 
+// Watcher 监听系统信号，阻塞进程直到接收到终止信号
+// handle: 接收到信号后的回调函数
 func Watcher(handle func()) {
 	fmt.Println("----- watch process start -----")
 
@@ -15,7 +17,9 @@ func Watcher(handle func()) {
 	// 接收信号
 	_ = <-ch
 
-	handle()
+	if handle != nil {
+		handle()
+	}
 
 	fmt.Println("----- watch process end -----")
 }
