@@ -6,15 +6,17 @@ import (
 	"strings"
 )
 
-// Version 表示一个语义化版本，包括主版本号、次版本号和修订号。
+// Version 表示一个语义化版本号
+// 遵循 SemVer 规范：Major.Minor.Patch
 type Version struct {
-	Major int // 主版本号
-	Minor int // 次版本号
-	Patch int // 修订号
+	Major int // 主版本号：不兼容的 API 修改
+	Minor int // 次版本号：向下兼容的功能性新增
+	Patch int // 修订号：向下兼容的问题修正
 }
 
-// NewVersion 解析类似 "v0.0.1" 的版本字符串，并返回 Version 结构体。
-// 如果格式有误，则返回错误。
+// NewVersion 解析版本字符串并返回 Version 结构体
+// verStr: 版本字符串（如 "v1.0.1" 或 "1.0.1"）
+// 返回: Version 指针，如果格式错误则返回 error
 func NewVersion(verStr string) (*Version, error) {
 	verStr = strings.TrimPrefix(verStr, "v") // 去除前缀 'v'
 	parts := strings.Split(verStr, ".")      // 按点分割
@@ -36,7 +38,8 @@ func NewVersion(verStr string) (*Version, error) {
 	return &Version{Major: major, Minor: minor, Patch: patch}, nil
 }
 
-// String 格式化输出版本号，格式为 "v{major}.{minor}.{patch}"
+// String 格式化输出版本号
+// 格式: "v{Major}.{Minor}.{Patch}"
 func (v *Version) String() string {
 	return fmt.Sprintf("v%d.%d.%d", v.Major, v.Minor, v.Patch)
 }
@@ -54,8 +57,12 @@ func (v *Version) Increment() {
 	}
 }
 
-// Compare 比较两个版本号。
-// 返回 1 表示当前版本大于 other，-1 表示小于，0 表示相等。
+// Compare 比较两个版本号的大小
+// other: 待比较的另一个版本
+// 返回:
+//   - 1: 当前版本 > other
+//   - 0: 当前版本 == other
+//   - -1: 当前版本 < other
 func (v *Version) Compare(other *Version) int {
 	if v.Major > other.Major {
 		return 1
