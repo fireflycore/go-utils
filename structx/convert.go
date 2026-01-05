@@ -2,6 +2,7 @@ package structx
 
 import (
 	"encoding/json"
+	"errors"
 )
 
 // StructConvert 结构体转换工具
@@ -11,11 +12,18 @@ import (
 // 警告：性能较差，仅适用于非关键路径或对性能不敏感的场景
 // 建议：高性能场景请使用手动赋值或专门的转换库（如 goverter）
 func StructConvert[S any, T any](source *S, target *T) error {
+	if source == nil {
+		return errors.New("source is nil")
+	}
+	if target == nil {
+		return errors.New("target is nil")
+	}
+
 	marshal, mErr := json.Marshal(source)
 	if mErr != nil {
 		return mErr
 	}
-	if err := json.Unmarshal(marshal, &target); err != nil {
+	if err := json.Unmarshal(marshal, target); err != nil {
 		return err
 	}
 	return nil

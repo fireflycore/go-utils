@@ -6,7 +6,7 @@
 
 ### StructConvert
 
-- **签名**: `func StructConvert[S any, T any](source *S, target *T)`
+- **签名**: `func StructConvert[S any, T any](source *S, target *T) error`
 - **描述**: 通过 JSON 序列化/反序列化实现结构体之间的转换。
 - **警告**: 性能较低，仅适用于非关键路径。建议高性能场景使用专门的转换库。
 
@@ -32,7 +32,9 @@ func main() {
     // StructConvert
     u1 := User{Name: "Alice", Age: 30}
     var u2 User
-    structx.StructConvert(&u1, &u2)
+    if err := structx.StructConvert(&u1, &u2); err != nil {
+        panic(err)
+    }
     
     // DiffStruct
     oldUser := User{Name: "Bob", Age: 20}
