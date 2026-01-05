@@ -20,7 +20,7 @@ func NewMD5() *MD5 {
 // input: 待哈希的字符串
 // key: 可选的盐值（salt），如果非空，将在 input 之前写入哈希计算器
 // 返回: 32位十六进制字符串
-func (ist *MD5) Encrypt(input, key string) string {
+func (m *MD5) Encrypt(input, key string) string {
 	hash := md5.New()
 	if key != "" {
 		_, _ = io.WriteString(hash, key)
@@ -33,6 +33,6 @@ func (ist *MD5) Encrypt(input, key string) string {
 // input: 待验证的原始字符串
 // salt: 计算哈希时使用的盐值
 // hash: 预期的 MD5 哈希值（十六进制字符串）
-func (ist *MD5) Compare(input, salt, hash string) bool {
-	return ist.Encrypt(input, salt) == hash
+func (m *MD5) Compare(input, salt, hash string) bool {
+	return m.Encrypt(input, salt) == hash
 }

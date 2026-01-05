@@ -21,7 +21,7 @@ func NewAESCrypto() Crypto {
 // data: 待加密的明文
 // key: AES 密钥，长度必须为 16, 24 或 32 字节（对应 AES-128, AES-192, AES-256）
 // 返回格式: [nonce(随机值) + ciphertext(密文)]
-func (e *AES) Encrypt(data []byte, key []byte) ([]byte, error) {
+func (a *AES) Encrypt(data []byte, key []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
@@ -43,7 +43,7 @@ func (e *AES) Encrypt(data []byte, key []byte) ([]byte, error) {
 // Decrypt 使用 AES-GCM 算法解密数据
 // data: 密文数据，格式必须为 [nonce + ciphertext]
 // key: 解密密钥，必须与加密时使用的密钥一致
-func (e *AES) Decrypt(data []byte, key []byte) ([]byte, error) {
+func (a *AES) Decrypt(data []byte, key []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err

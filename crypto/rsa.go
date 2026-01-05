@@ -9,16 +9,18 @@ import (
 	"errors"
 )
 
+// RSA 实现 Crypto 接口，提供基于 RSA-OAEP(SHA256) 的加解密能力。
 type RSA struct{}
 
+// NewRSACrypto 创建一个新的 RSA 加密器实例。
 func NewRSACrypto() Crypto {
 	return &RSA{}
 }
 
 // Encrypt 使用 RSA 公钥加密数据
-func (ist *RSA) Encrypt(data []byte, key []byte) ([]byte, error) {
+func (r *RSA) Encrypt(data []byte, key []byte) ([]byte, error) {
 	// 解析 RSA 公钥
-	publicKey, err := ist.parseRSAPublicKey(key)
+	publicKey, err := r.parseRSAPublicKey(key)
 	if err != nil {
 		return nil, err
 	}
@@ -30,9 +32,9 @@ func (ist *RSA) Encrypt(data []byte, key []byte) ([]byte, error) {
 // data: 密文数据
 // key: PEM 格式的 RSA 私钥数据
 // 使用 SHA256 作为 OAEP 的哈希函数
-func (ist *RSA) Decrypt(data []byte, key []byte) ([]byte, error) {
+func (r *RSA) Decrypt(data []byte, key []byte) ([]byte, error) {
 	// 解析 RSA 私钥
-	privateKey, err := ist.parseRSAPrivateKey(key)
+	privateKey, err := r.parseRSAPrivateKey(key)
 	if err != nil {
 		return nil, err
 	}
@@ -40,8 +42,7 @@ func (ist *RSA) Decrypt(data []byte, key []byte) ([]byte, error) {
 	return rsa.DecryptOAEP(sha256.New(), rand.Reader, privateKey, data, nil)
 }
 
-// 解析 PEM 格式的 RSA 公钥
-func (ist *RSA) parseRSAPublicKey(key []byte) (*rsa.PublicKey, error) {
+func (r *RSA) parseRSAPublicKey(key []byte) (*rsa.PublicKey, error) {
 	// 解码 PEM 格式的公钥
 	block, _ := pem.Decode(key)
 	if block == nil || block.Type != "PUBLIC KEY" {
@@ -60,8 +61,7 @@ func (ist *RSA) parseRSAPublicKey(key []byte) (*rsa.PublicKey, error) {
 	return publicKey, nil
 }
 
-// 解析 PEM 格式的 RSA 私钥
-func (ist *RSA) parseRSAPrivateKey(key []byte) (*rsa.PrivateKey, error) {
+func (r *RSA) parseRSAPrivateKey(key []byte) (*rsa.PrivateKey, error) {
 	// 解码 PEM 格式的私钥
 	block, _ := pem.Decode(key)
 	if block == nil || block.Type != "RSA PRIVATE KEY" {

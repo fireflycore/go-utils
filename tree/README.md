@@ -1,10 +1,10 @@
-## Tree (树)
+# Tree (树)
 
 提供 PostgreSQL ltree 风格的标签树路径操作工具。
 
-### API
+## API
 
-#### LTree
+### LTree
 
 用于处理类似 "A.B.C" 的层级路径结构。
 
@@ -12,7 +12,7 @@
   - 签名: `func NewLTree() *LTree`
   - 描述: 创建 LTree 工具实例。
 
-#### Methods
+### Methods
 
 - **GetLTreeDepth**
   - 签名: `func (t *LTree) GetLTreeDepth(path string) int`
@@ -33,7 +33,7 @@
   - 签名: `func (t *LTree) ReplaceCurrentPath(oldPath, currentPath string) string`
   - 描述: 重命名当前节点。
 
-### 示例
+## 示例
 
 ```go
 import (

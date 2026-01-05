@@ -1,6 +1,7 @@
 package file
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -14,12 +15,15 @@ func ReadRemoteFile(url string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer func(Body io.ReadCloser) {
-		if ce := Body.Close(); ce != nil {
-			err = ce
-		}
-	}(res.Body)
+	defer res.Body.Close()
 
-	bytes, _ := io.ReadAll(res.Body)
-	return bytes, err
+	if res.StatusCode < http.StatusOK || res.StatusCode >= http.StatusMultipleChoices {
+		return nil, fmt.Errorf("读取远程文件失败: status=%s", res.Status)
+	}
+
+	bytes, err := io.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+	return bytes, nil
 }

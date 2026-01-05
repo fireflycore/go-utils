@@ -1,19 +1,19 @@
-## Version (版本)
+# Version (版本)
 
 提供简单的语义化版本管理工具。
 
-### API
+## API
 
-#### Version
+### Version
 
 - 结构体: `Major`, `Minor`, `Patch`
 
-#### NewVersion
+### NewVersion
 
 - **签名**: `func NewVersion(verStr string) (*Version, error)`
 - **描述**: 解析版本字符串（支持带 'v' 前缀）。
 
-#### Methods
+### Methods
 
 - **Increment**: `func (v *Version) Increment()`
   - 描述: 版本自增（逢 100 进位）。
@@ -22,7 +22,7 @@
 - **String**: `func (v *Version) String() string`
   - 描述: 格式化为 "vX.Y.Z" 形式。
 
-### 示例
+## 示例
 
 ```go
 import (
