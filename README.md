@@ -11,6 +11,7 @@
 - [Process (进程)](process/README.md): 信号监听与优雅退出。
 - [Slicex (切片)](slicex/README.md): 泛型切片差异比较与过滤。
 - [Structx (结构体)](structx/README.md): 结构体转换与差异比较。
+- [TLSX (TLS)](tlsx): 基于证书文件的 TLS 配置构造。
 - [Tree (树)](tree/README.md): 标签树路径操作。
 - [Version (版本)](version/README.md): 语义化版本管理。
 
@@ -18,4 +19,20 @@
 
 ```bash
 go get github.com/fireflycore/go-utils
+```
+
+## TLSX 快速示例
+
+```go
+tlsConfig, enabled, err := tlsx.NewTLSConfig(&tlsx.TLS{
+	CaCert:        "/path/to/ca.pem",
+	ClientCert:    "/path/to/client.pem",
+	ClientCertKey: "/path/to/client.key",
+})
+if err != nil {
+	return err
+}
+if enabled {
+	_ = tlsConfig
+}
 ```
