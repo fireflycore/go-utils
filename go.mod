@@ -1,5 +1,5 @@
 module github.com/fireflycore/go-utils
 
-go 1.25.1
+go 1.26.10
 
-require github.com/klauspost/compress v1.18.6
+require github.com/klauspost/compress v1.20.2
